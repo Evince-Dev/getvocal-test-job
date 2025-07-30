@@ -5,8 +5,8 @@ export interface CallSegment {
   type: SegmentType;
   start: number;
   end: number;
-  message: string;
-  processedMessage?: string; // Original message content before any modifications
+  message: string; // Original message content before any modifications
+  processedMessage?: string;
   hasNoise?: boolean; // Indicates whether the segment contains noise
   tags?: string[]; // Additional tags for the segment
   hasAction?: boolean; // Indicates whether the segment contains an action
