@@ -181,7 +181,6 @@ const CallAnalytics: React.FC = () => {
   const activeSegment = transcriptData.segments.filter(
     (segment) => currentTime >= segment.start && currentTime <= segment.end
   )[0];
-  console.log("activeSegment: ", activeSegment);
   return (
     <div className="w-full max-w-5xl  mx-auto p-3 lg:p-6 bg-white">
       {/* Hidden audio element */}
