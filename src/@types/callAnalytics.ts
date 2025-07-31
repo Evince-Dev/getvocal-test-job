@@ -1,4 +1,4 @@
-export type SegmentType = "agent" | "speaker" | "blank";
+export type SegmentType = "agent" | "user" | "latency";
 export type ActionType = "meeting_scheduler" | "transffering_call";
 
 export interface CallSegment {

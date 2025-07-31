@@ -1,19 +1,21 @@
 import React from "react";
-import { formatTime } from "../utils/helper";
+import { calculateLatencyMs } from "../utils/helper";
 import type { CallSegment } from "../@types/callAnalytics";
 
-type BlankTimelineProps = {
+type LatencyTimelineProps = {
   segments: CallSegment[];
   totalTime: number;
   timelineHeight: number;
 };
 
-const BlankTimeline: React.FC<BlankTimelineProps> = ({
+const LatencyTimeline: React.FC<LatencyTimelineProps> = ({
   segments,
   totalTime,
   timelineHeight,
 }) => {
-  const noiseSegments = segments.filter((segment) => segment.type === "blank");
+  const noiseSegments = segments.filter(
+    (segment) => segment.type === "latency"
+  );
 
   return (
     <>
@@ -42,9 +44,7 @@ const BlankTimeline: React.FC<BlankTimelineProps> = ({
               style={{ top: `${top}px` }}
             >
               <div className="font-semibold mb-1">
-                {`blank - ${formatTime(segment.start)} - ${formatTime(
-                  segment.end
-                )}`}
+                {calculateLatencyMs(segment.start, segment.end).formatted}
               </div>
               <div>{segment.message}</div>
             </div>
@@ -55,4 +55,4 @@ const BlankTimeline: React.FC<BlankTimelineProps> = ({
   );
 };
 
-export default BlankTimeline;
+export default LatencyTimeline;

@@ -1,6 +1,5 @@
 import { formatTime } from "../utils/helper";
 import { Play, Pause } from "lucide-react";
-import VolumeController from "./VolumeController";
 
 type Props = {
   togglePlayPause: () => void;
@@ -8,10 +7,6 @@ type Props = {
   isPlaying: boolean;
   currentTime: number;
   duration: number;
-  toggleMute: () => void;
-  handleVolumeChange: (newVolume: number) => void;
-  isMuted: boolean;
-  volume: number;
   seekToTime: (time: number) => void;
 };
 const AudioController: React.FC<Props> = ({
@@ -20,10 +15,6 @@ const AudioController: React.FC<Props> = ({
   isPlaying,
   currentTime,
   duration,
-  toggleMute,
-  handleVolumeChange,
-  isMuted,
-  volume,
   seekToTime,
 }) => {
   return (
@@ -53,16 +44,6 @@ const AudioController: React.FC<Props> = ({
           <div className="text-md lg:text-lg font-mono text-blue-600">
             {formatTime(currentTime)} / {formatTime(duration)}
           </div>
-        </div>
-
-        <div className="text-sm text-gray-600">
-          {/* Volume Control */}
-          <VolumeController
-            toggleMute={toggleMute}
-            handleChange={handleVolumeChange}
-            isMuted={isMuted}
-            volume={volume}
-          />
         </div>
       </div>
 

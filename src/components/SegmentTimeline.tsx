@@ -6,7 +6,7 @@ import ActionButton from "./ActionButton";
 
 type SegmentTimelineProps = {
   segments: CallSegment[];
-  type: "agent" | "speaker";
+  type: "agent" | "user";
   totalTime: number;
   timelineHeight: number;
   currentTime: number;
@@ -31,8 +31,7 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
           20,
           ((segment.end - segment.start) / totalTime) * timelineHeight
         );
-        const isActive =
-          currentTime >= segment.start && currentTime <= segment.end;
+        const isActive = currentTime >= segment.start;
 
         return (
           <div
@@ -95,14 +94,11 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
             {/* Transcript */}
             {isActive && segment.message && (
               <div
-                className={`hidden lg:block absolute bg-primary text-white text-xs rounded p-2 transition-opacity z-10 w-60 ${
+                className={`hidden lg:block absolute bg-primary text-white text-xs rounded p-2 transition-opacity z-10 min-w-48 w-[max-content] max-w-60 xl:max-w-80 ${
                   type === "agent" ? "right-25" : "left-25"
                 }`}
                 style={{ top: `${top}px` }}
               >
-                <div className="font-semibold mb-1">
-                  {formatTime(segment.start)} - {formatTime(segment.end)}
-                </div>
                 <div>{segment.message}</div>
                 {segment.processedMessage && (
                   <div className="border-t border-white">

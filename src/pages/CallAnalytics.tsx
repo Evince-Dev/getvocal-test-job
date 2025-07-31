@@ -1,16 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { transcriptData } from "../utils/data";
 import { Play, Pause, Sparkle } from "lucide-react";
-import { AudioController, BlankTimeline, SegmentTimeline } from "../components";
-import { formatTime } from "../utils/helper";
+import {
+  AudioController,
+  LatencyTimeline,
+  SegmentTimeline,
+  TimeMarkers,
+} from "../components";
 
 const CallAnalytics: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [volume, setVolume] = useState<number>(1);
-  const [isMuted, setIsMuted] = useState<boolean>(false);
   const [containerHeight, setContainerHeight] = useState(450);
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -20,7 +22,7 @@ const CallAnalytics: React.FC = () => {
   const totalTime = duration || maxTime;
 
   // Dynamic scaling based on content length
-  const minPixelsPerSecond = 8; // Minimum scale for very long recordings
+  const minPixelsPerSecond = 10; // Minimum scale for very long recordings
   const maxPixelsPerSecond = 20; // Maximum scale for short recordings
   const basePixelsPerSecond = Math.max(
     minPixelsPerSecond,
@@ -151,20 +153,6 @@ const CallAnalytics: React.FC = () => {
     setCurrentTime(time);
   };
 
-  const handleVolumeChange = (newVolume: number) => {
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-    }
-  };
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-    }
-  };
-
   const handleTimelineClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const clickY = event.clientY - rect.top;
@@ -182,7 +170,7 @@ const CallAnalytics: React.FC = () => {
     (segment) => currentTime >= segment.start && currentTime <= segment.end
   )[0];
   return (
-    <div className="w-full max-w-5xl  mx-auto p-3 lg:p-6 bg-white">
+    <div className="w-full max-w-6xl  mx-auto p-3 lg:p-6 bg-white">
       {/* Hidden audio element */}
       <audio ref={audioRef} src={transcriptData.audioUrl} preload="metadata" />
 
@@ -201,10 +189,6 @@ const CallAnalytics: React.FC = () => {
           isPlaying={isPlaying}
           currentTime={currentTime}
           duration={duration || maxTime}
-          toggleMute={toggleMute}
-          handleVolumeChange={handleVolumeChange}
-          isMuted={isMuted}
-          volume={volume}
           seekToTime={seekToTime}
         />
       </div>
@@ -231,7 +215,7 @@ const CallAnalytics: React.FC = () => {
           {/* AI Agent Column */}
           <div className="flex flex-col items-center">
             <div className="bg-blue-50 p-2 rounded-lg mb-4 w-full text-center sticky top-0 z-30  shadow-sm">
-              <h2 className="font-semibold text-gray-800">AI Agent</h2>
+              <h2 className="font-semibold text-gray-800">GetVocal Agent</h2>
             </div>
 
             <div
@@ -261,7 +245,7 @@ const CallAnalytics: React.FC = () => {
             </div>
 
             <div
-              className="relative bg-gray-100 rounded-lg cursor-pointer"
+              className="relative  rounded-lg cursor-pointer"
               style={{ height: `${timelineHeight}px`, width: "60px" }}
               onClick={handleTimelineClick}
             >
@@ -322,46 +306,25 @@ const CallAnalytics: React.FC = () => {
               </div>
 
               {/* Time markers */}
-              {Array.from(
-                { length: Math.ceil((duration || maxTime) / 15) + 1 },
-                (_, i) => i * 15
-              )
-                .filter((time) => time <= (duration || maxTime))
-                .map((time) => (
-                  <div
-                    key={time}
-                    className="absolute text-xs text-gray-600 font-mono"
-                    style={{
-                      top: `${
-                        (time / (duration || maxTime)) * timelineHeight - 6
-                      }px`,
-                      left: "70px",
-                    }}
-                  >
-                    {formatTime(time)}
-                  </div>
-                ))}
+              <TimeMarkers
+                segments={transcriptData.segments}
+                totalTime={totalTime}
+                timelineHeight={timelineHeight}
+              />
 
-              {/* Noise segments overlay */}
-              <BlankTimeline
+              {/* latency segments overlay */}
+              <LatencyTimeline
                 segments={transcriptData.segments}
                 totalTime={totalTime}
                 timelineHeight={timelineHeight}
               />
             </div>
-
-            {/* <div className="mt-4 text-center sticky bottom-0 bg-white pt-2">
-              <div className="text-xs text-gray-500">Click to seek</div>
-              <div className="text-xs font-mono text-gray-600 mt-1">
-                Total: {formatTime(duration || maxTime)}
-              </div>
-            </div> */}
           </div>
 
           {/* Speaker Column */}
           <div className="flex flex-col items-center">
             <div className="bg-green-50 p-2 rounded-lg mb-4 w-full text-center sticky top-0 z-30 shadow-sm">
-              <h2 className="font-semibold text-gray-800">Speaker</h2>
+              <h2 className="font-semibold text-gray-800">User</h2>
             </div>
 
             <div
@@ -374,7 +337,7 @@ const CallAnalytics: React.FC = () => {
               {/* Segment rectangles */}
               <SegmentTimeline
                 segments={transcriptData.segments}
-                type="speaker"
+                type="user"
                 totalTime={totalTime}
                 timelineHeight={timelineHeight}
                 currentTime={currentTime}

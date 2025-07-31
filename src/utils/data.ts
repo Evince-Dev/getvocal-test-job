@@ -7,14 +7,7 @@ export const transcriptData: CallData = {
   audioUrl: audioUrl, // Sample audio file
   segments: [
     {
-      type: "blank",
-      hasNoise: false,
-      start: 0,
-      end: 16,
-      message: "",
-    },
-    {
-      type: "speaker",
+      type: "user",
       hasNoise: false,
       start: 17,
       end: 18,
@@ -30,14 +23,7 @@ export const transcriptData: CallData = {
       tags: ["DB_QUESTION", "depth1"],
     },
     {
-      type: "blank",
-      hasNoise: true,
-      start: 24,
-      end: 30,
-      message: "",
-    },
-    {
-      type: "speaker",
+      type: "user",
       hasNoise: false,
       start: 31,
       end: 35,
@@ -45,10 +31,10 @@ export const transcriptData: CallData = {
       processedMessage: "dont know what o check..",
     },
     {
-      type: "blank",
+      type: "latency",
       hasNoise: true,
       start: 36,
-      end: 37,
+      end: 38,
       message: "",
     },
     {
@@ -60,14 +46,7 @@ export const transcriptData: CallData = {
       tags: ["DB_ANSWER", "depth1"],
     },
     {
-      type: "blank",
-      hasNoise: true,
-      start: 67,
-      end: 74,
-      message: "",
-    },
-    {
-      type: "speaker",
+      type: "user",
       hasNoise: true,
       start: 75,
       end: 79,
@@ -75,10 +54,10 @@ export const transcriptData: CallData = {
       processedMessage: ":Nao, nao I confirm it.AND Bicuda Street",
     },
     {
-      type: "blank",
+      type: "latency",
       hasNoise: true,
       start: 80,
-      end: 81,
+      end: 82,
       message: "",
     },
     {
@@ -90,14 +69,7 @@ export const transcriptData: CallData = {
       tags: ["DB_ANSWER", "google/gemini-2.5-flash"],
     },
     {
-      type: "blank",
-      hasNoise: true,
-      start: 91,
-      end: 98,
-      message: "",
-    },
-    {
-      type: "speaker",
+      type: "user",
       hasNoise: false,
       start: 99,
       end: 103,
@@ -105,10 +77,10 @@ export const transcriptData: CallData = {
       processedMessage: "xi, xin chao, xin chao",
     },
     {
-      type: "blank",
+      type: "latency",
       hasNoise: true,
       start: 104,
-      end: 105,
+      end: 106,
       message: "",
     },
     {
@@ -120,14 +92,7 @@ export const transcriptData: CallData = {
       tags: ["LLM", "gpt-4o-2024-08-06"],
     },
     {
-      type: "blank",
-      hasNoise: true,
-      start: 115,
-      end: 118,
-      message: "",
-    },
-    {
-      type: "speaker",
+      type: "user",
       hasNoise: false,
       start: 119,
       end: 120,
@@ -135,10 +100,10 @@ export const transcriptData: CallData = {
       processedMessage: "nno",
     },
     {
-      type: "blank",
+      type: "latency",
       hasNoise: true,
       start: 121,
-      end: 122,
+      end: 123,
       message: "",
     },
     {
@@ -150,7 +115,7 @@ export const transcriptData: CallData = {
       tags: ["LLM", "gpt-4o-2024-08-06"],
     },
     {
-      type: "speaker",
+      type: "user",
       hasNoise: false,
       start: 134,
       end: 136,
@@ -166,25 +131,18 @@ export const transcriptData: CallData = {
       tags: ["DB_ANSWER", "gpt-4o-2024-08-06"],
     },
     {
-      type: "blank",
-      hasNoise: true,
-      start: 158,
-      end: 160,
-      message: "",
-    },
-    {
-      type: "speaker",
+      type: "user",
       hasNoise: true,
       start: 161,
-      end: 163,
+      end: 164,
       message: "For four years",
       processedMessage: "que eu quero",
     },
     {
-      type: "blank",
+      type: "latency",
       hasNoise: true,
-      start: 164,
-      end: 166,
+      start: 165,
+      end: 167,
       message: "",
     },
     {
@@ -196,27 +154,13 @@ export const transcriptData: CallData = {
       tags: ["DB_QUESTION", "gpt-4o-2024-08-06"],
     },
     {
-      type: "blank",
-      hasNoise: true,
-      start: 174,
-      end: 187,
-      message: "",
-    },
-    {
       type: "agent",
       start: 188,
       end: 190,
       message: "I think I lost you. Are you there?",
     },
     {
-      type: "blank",
-      hasNoise: true,
-      start: 191,
-      end: 195,
-      message: "",
-    },
-    {
-      type: "speaker",
+      type: "user",
       hasNoise: true,
       start: 196,
       end: 209,
@@ -244,19 +188,12 @@ export const transcriptData: CallData = {
       message: "",
     },
     {
-      type: "speaker",
+      type: "user",
       hasNoise: true,
       start: 217,
       end: 218,
       message: "Thank you.",
       processedMessage: "Thank you...",
-    },
-    {
-      type: "blank",
-      hasNoise: true,
-      start: 218,
-      end: 225,
-      message: "",
     },
   ],
 };

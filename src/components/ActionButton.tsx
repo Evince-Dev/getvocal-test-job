@@ -35,7 +35,7 @@ const ActionButton: React.FC<Props> = ({ handleClick, type }) => {
         e.stopPropagation();
         handleClick();
       }}
-      className="text-primary transition-colors shadow-sm min-w-36 lg:min-w-48"
+      className="text-primary transition-colors shadow-sm min-w-36 lg:min-w-40"
     >
       <div className="flex items-center justify-around lg:space-x-2 p-1 lg:p2 text-sm">
         <span>{getText}</span>
