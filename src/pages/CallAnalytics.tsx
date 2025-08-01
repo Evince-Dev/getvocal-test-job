@@ -214,8 +214,10 @@ const CallAnalytics: React.FC = () => {
         <div className="grid grid-cols-3 gap-1 lg:gap-3 max-w-lg mx-auto justify-items-center">
           {/* AI Agent Column */}
           <div className="flex flex-col items-center">
-            <div className="bg-blue-50 p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30  shadow-sm">
-              <h2 className="font-semibold text-gray-800">GetVocal Agent</h2>
+            <div className="bg-blue-50 p-1 lg:p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30 shadow-sm">
+              <h2 className="font-semibold text-gray-800 text-sm lg:text-md">
+                GetVocal Agent
+              </h2>
             </div>
 
             <div
@@ -239,9 +241,11 @@ const CallAnalytics: React.FC = () => {
 
           {/* Timeline Column */}
           <div className="flex flex-col items-center">
-            <div className="bg-gray-50 p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30  shadow-sm font-semibold text-gray-800">
-              <h2 className="hidden lg:block">Timeline of audio</h2>
-              <h2 className="block lg:hidden">Timeline</h2>
+            <div className="bg-gray-50 p-1 lg:p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30 shadow-sm font-semibold text-gray-800">
+              <h2 className="hidden lg:block text-sm text-md">
+                Timeline of audio
+              </h2>
+              <h2 className="block lg:hidden text-sm">Timeline</h2>
             </div>
 
             <div
@@ -321,8 +325,10 @@ const CallAnalytics: React.FC = () => {
 
           {/* Speaker Column */}
           <div className="flex flex-col items-center">
-            <div className="bg-green-50 p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30 shadow-sm">
-              <h2 className="font-semibold text-gray-800">User</h2>
+            <div className="bg-green-50 p-1 lg:p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30 shadow-sm">
+              <h2 className="font-semibold text-gray-800 text-sm lg:text-md">
+                User
+              </h2>
             </div>
 
             <div
