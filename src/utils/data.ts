@@ -19,7 +19,7 @@ export const transcriptData: CallData = {
       start: 19,
       end: 23,
       message:
-        "hello, I am Dottie your virtual agent from power dot, how can I help you?",
+        "Hello, I am Dottie your virtual agent from power dot, how can I help you?",
       tags: ["DB_QUESTION", "depth1"],
     },
     {
@@ -28,7 +28,7 @@ export const transcriptData: CallData = {
       start: 31,
       end: 35,
       message: "I don't know what to check.",
-      processedMessage: "dont know what o check..",
+      processedMessage: "Dont know what o check..",
     },
     {
       type: "latency",
@@ -65,7 +65,7 @@ export const transcriptData: CallData = {
       start: 82,
       end: 90,
       message:
-        "you can either start by connecting the connector to the car or start in the credit card terminal screen. Which option do you prefer to follow?",
+        "You can either start by connecting the connector to the car or start in the credit card terminal screen. Which option do you prefer to follow?",
       tags: ["DB_ANSWER", "google/gemini-2.5-flash"],
     },
     {
@@ -74,19 +74,19 @@ export const transcriptData: CallData = {
       start: 99,
       end: 103,
       message: "They can't find the credit card in the church here.",
-      processedMessage: "xi, xin chao, xin chao",
+      processedMessage: "Xi, xin chao, xin chao",
     },
     {
       type: "latency",
       hasNoise: true,
       start: 104,
-      end: 106,
+      end: 107,
       message: "",
     },
     {
       type: "agent",
-      start: 106,
-      end: 114,
+      start: 107,
+      end: 115,
       message:
         "Okay, so before we start, let's make sure the cable is still not plugged into your car. Please put it back on the charger. Is it done?",
       tags: ["LLM", "gpt-4o-2024-08-06"],
@@ -120,14 +120,14 @@ export const transcriptData: CallData = {
       start: 134,
       end: 136,
       message: "Yes, yes.",
-      processedMessage: "sim, sim",
+      processedMessage: "Sim, sim",
     },
     {
       type: "agent",
       start: 137,
       end: 157,
       message:
-        "great Now here's how you can start charging one, tap your credit card on the payment terminal. Two, follow any instructions on the screen, if prompted. Three, once the payment is authorized, connect the charging cable to your car and the session should begin. Did this work for you?",
+        "Great Now here's how you can start charging one, tap your credit card on the payment terminal. Two, follow any instructions on the screen, if prompted. Three, once the payment is authorized, connect the charging cable to your car and the session should begin. Did this work for you?",
       tags: ["DB_ANSWER", "gpt-4o-2024-08-06"],
     },
     {
@@ -136,7 +136,7 @@ export const transcriptData: CallData = {
       start: 161,
       end: 164,
       message: "For four years",
-      processedMessage: "que eu quero",
+      processedMessage: "Que eu quero",
     },
     {
       type: "latency",
@@ -147,10 +147,10 @@ export const transcriptData: CallData = {
     },
     {
       type: "agent",
-      start: 167,
+      start: 168,
       end: 173,
       message:
-        "the session should be active once the payment is confirmed. Is everything working on your end now?",
+        "The session should be active once the payment is confirmed. Is everything working on your end now?",
       tags: ["DB_QUESTION", "gpt-4o-2024-08-06"],
     },
     {
@@ -162,22 +162,37 @@ export const transcriptData: CallData = {
     {
       type: "user",
       hasNoise: true,
-      start: 196,
-      end: 209,
+      start: 196.5,
+      end: 208.5,
       message:
         "Yeah, I am here. they don't do the that's enough that's enough Thank you.",
       processedMessage:
         "Yeah, I am here. they don't do the that's enough that's enough Thank you.",
     },
     {
+      type: "latency",
+      hasNoise: true,
+      start: 209,
+      end: 210.5,
+      message: "",
+    },
+    {
       type: "agent",
-      start: 210,
-      end: 216,
+      start: 210.5,
+      end: 216.5,
       message:
         "You're welcome. If you have any more questions in the future, feel free to reach out. Have a great day.",
       tags: ["DB_ANSWER", "google/gemini-2.5-flash"],
       hasAction: true,
       actionType: "meeting_scheduler",
+    },
+    {
+      type: "user",
+      hasNoise: true,
+      start: 217.5,
+      end: 218,
+      message: "Thank you.",
+      processedMessage: "Thank you...",
     },
     {
       type: "agent",
@@ -186,14 +201,6 @@ export const transcriptData: CallData = {
       hasAction: true,
       actionType: "transffering_call",
       message: "",
-    },
-    {
-      type: "user",
-      hasNoise: true,
-      start: 217,
-      end: 218,
-      message: "Thank you.",
-      processedMessage: "Thank you...",
     },
   ],
 };

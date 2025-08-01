@@ -22,7 +22,7 @@ const LatencyTimeline: React.FC<LatencyTimelineProps> = ({
       {noiseSegments.map((segment, index) => {
         const top = (segment.start / totalTime) * timelineHeight;
         const height = Math.max(
-          10,
+          10, // min height for segment
           ((segment.end - segment.start) / totalTime) * timelineHeight
         );
 

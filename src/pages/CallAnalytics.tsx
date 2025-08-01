@@ -5,8 +5,8 @@ import {
   AudioController,
   LatencyTimeline,
   SegmentTimeline,
-  TimeMarkers,
 } from "../components";
+import { formatTime } from "../utils/helper";
 
 const CallAnalytics: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(0);
@@ -214,7 +214,7 @@ const CallAnalytics: React.FC = () => {
         <div className="grid grid-cols-3 gap-1 lg:gap-3 max-w-lg mx-auto justify-items-center">
           {/* AI Agent Column */}
           <div className="flex flex-col items-center">
-            <div className="bg-blue-50 p-2 rounded-lg mb-4 w-full text-center sticky top-0 z-30  shadow-sm">
+            <div className="bg-blue-50 p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30  shadow-sm">
               <h2 className="font-semibold text-gray-800">GetVocal Agent</h2>
             </div>
 
@@ -239,7 +239,7 @@ const CallAnalytics: React.FC = () => {
 
           {/* Timeline Column */}
           <div className="flex flex-col items-center">
-            <div className="bg-gray-50 p-2 rounded-lg mb-4 w-full text-center sticky top-0 z-30  shadow-sm font-semibold text-gray-800">
+            <div className="bg-gray-50 p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30  shadow-sm font-semibold text-gray-800">
               <h2 className="hidden lg:block">Timeline of audio</h2>
               <h2 className="block lg:hidden">Timeline</h2>
             </div>
@@ -267,12 +267,17 @@ const CallAnalytics: React.FC = () => {
               <div
                 style={{
                   top: `${
-                    (currentTime / (duration || maxTime)) * timelineHeight - 8
+                    (currentTime / (duration || maxTime)) * timelineHeight - 12
                   }px`,
                   left: "50%",
                 }}
                 className="absolute"
               >
+                {/* Current time */}
+                <span className="absolute left-5 -top-1 text-xs text-gray-400 font-mono">
+                  {formatTime(currentTime)}
+                </span>
+
                 {/* Dotted line behind the button */}
                 <span
                   className={`absolute top-3 left-1/2 transform -translate-x-1/2 border border-dashed w-56 lg:w-80 z-10 ${
@@ -305,13 +310,6 @@ const CallAnalytics: React.FC = () => {
                 </button>
               </div>
 
-              {/* Time markers */}
-              <TimeMarkers
-                segments={transcriptData.segments}
-                totalTime={totalTime}
-                timelineHeight={timelineHeight}
-              />
-
               {/* latency segments overlay */}
               <LatencyTimeline
                 segments={transcriptData.segments}
@@ -323,7 +321,7 @@ const CallAnalytics: React.FC = () => {
 
           {/* Speaker Column */}
           <div className="flex flex-col items-center">
-            <div className="bg-green-50 p-2 rounded-lg mb-4 w-full text-center sticky top-0 z-30 shadow-sm">
+            <div className="bg-green-50 p-2 rounded-lg mb-5 w-full text-center sticky top-0 z-30 shadow-sm">
               <h2 className="font-semibold text-gray-800">User</h2>
             </div>
 

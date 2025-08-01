@@ -28,38 +28,38 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
       {filteredSegments.map((segment, index) => {
         const top = (segment.start / totalTime) * timelineHeight;
         const height = Math.max(
-          20,
+          10, // min height for segment
           ((segment.end - segment.start) / totalTime) * timelineHeight
         );
         const isActive = currentTime >= segment.start;
 
         return (
-          <div
-            key={index}
-            className="relative group"
-            onClick={() => handleClick(segment)}
-          >
-            <div
-              className={`absolute w-6 rounded border-2 cursor-pointer transition-all duration-200 
+          <div key={index} className="relative group">
+            {segment.message && (
+              <div
+                className={`absolute w-6 rounded border-2 cursor-pointer transition-all duration-200 
                 ${isActive ? "opacity-100" : "opacity-50"}
                 ${
                   type === "agent"
                     ? "bg-blue-200 border-blue-600"
                     : "bg-green-200 border-green-600"
                 }`}
-              style={{
-                top: `${top}px`,
-                height: `${height}px`,
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}
-            ></div>
+                style={{
+                  top: `${top}px`,
+                  height: `${height}px`,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                }}
+                onClick={() => handleClick(segment)}
+              ></div>
+            )}
+
             <>
               {/* Start Time */}
               <div
                 className="absolute text-xs text-gray-600 font-mono"
                 style={{
-                  top: `${top - 2}px`,
+                  top: `${top - 8}px`,
                   [type === "agent" ? "right" : "left"]: "65px",
                 }}
               >
@@ -70,7 +70,7 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
               <div
                 className="absolute text-xs text-gray-600 font-mono"
                 style={{
-                  top: `${top + height - 10}px`,
+                  top: `${top + height - 8}px`,
                   [type === "agent" ? "right" : "left"]: "65px",
                 }}
               >
@@ -83,8 +83,8 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
               <div
                 className="absolute"
                 style={{
-                  top: `${top + height - 10}px`,
-                  [type === "agent" ? "right" : "left"]: "100px",
+                  top: `${top + height - 8}px`,
+                  [type === "agent" ? "right" : "left"]: "93px",
                 }}
               >
                 <Sparkle size={12} color="red" />
@@ -94,8 +94,8 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
             {/* Transcript */}
             {isActive && segment.message && (
               <div
-                className={`hidden lg:block absolute bg-primary text-white text-xs rounded p-2 transition-opacity z-10 min-w-48 w-[max-content] max-w-60 xl:max-w-80 ${
-                  type === "agent" ? "right-25" : "left-25"
+                className={`hidden lg:block absolute bg-primary text-white text-xs rounded p-2 transition-opacity z-10 min-w-48 w-[max-content] max-w-60 xl:max-w-72 ${
+                  type === "agent" ? "right-27" : "left-27"
                 }`}
                 style={{ top: `${top}px` }}
               >
@@ -107,11 +107,12 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
                   </div>
                 )}
 
+                {/* tags */}
                 <div className="my-1 flex flex-wrap gap-1">
                   {segment.tags?.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-block p-1 text-xs font-semibold bg-white text-primary rounded-full"
+                      className="inline-block p-[2px] text-xs font-semibold bg-white text-primary rounded shadow-lg"
                     >
                       {tag}
                     </span>
@@ -126,7 +127,7 @@ const SegmentTimeline: React.FC<SegmentTimelineProps> = ({
                 className="hidden md:block absolute"
                 style={{
                   top: `${top}px`,
-                  [type === "agent" ? "right" : "left"]: "100px",
+                  [type === "agent" ? "right" : "left"]: "110px",
                 }}
               >
                 <ActionButton
